@@ -27,32 +27,32 @@ export type SigninType = z.infer<typeof signinInput>;
 export declare const createPostInput: z.ZodObject<{
     title: z.ZodString;
     content: z.ZodString;
-    published: z.ZodString;
-    authorId: z.ZodString;
+    published: z.ZodOptional<z.ZodBoolean>;
+    authorId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
-    published: string;
-    authorId: string;
+    published?: boolean | undefined;
+    authorId?: string | undefined;
 }, {
     title: string;
     content: string;
-    published: string;
-    authorId: string;
+    published?: boolean | undefined;
+    authorId?: string | undefined;
 }>;
 export type CreatePostType = z.infer<typeof createPostInput>;
 export declare const updatePostInput: z.ZodObject<{
     title: z.ZodOptional<z.ZodString>;
     content: z.ZodOptional<z.ZodString>;
-    published: z.ZodString;
+    published: z.ZodBoolean;
     authorId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    published: string;
+    published: boolean;
     authorId: string;
     title?: string | undefined;
     content?: string | undefined;
 }, {
-    published: string;
+    published: boolean;
     authorId: string;
     title?: string | undefined;
     content?: string | undefined;

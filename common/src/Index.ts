@@ -18,8 +18,8 @@ export type SigninType = z.infer<typeof signinInput>;
 export const createPostInput = z.object({
   title: z.string(),
   content: z.string(),
-  published: z.string(),
-  authorId: z.string(),
+  published: z.boolean().optional(),
+  authorId: z.string().optional(),
 });
 
 export type CreatePostType = z.infer<typeof createPostInput>;
@@ -27,7 +27,7 @@ export type CreatePostType = z.infer<typeof createPostInput>;
 export const updatePostInput = z.object({
   title: z.string().optional(),
   content: z.string().optional(),
-  published: z.string(),
+  published: z.boolean(),
   authorId: z.string(),
 });
 

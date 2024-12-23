@@ -56,6 +56,7 @@ blogRouter.post("/", async (c) => {
     });
     return c.json({ id: post.id });
   } catch (e) {
+    console.log(e);
     c.status(411);
     return c.json({ Error: "Unable to add blog" });
   }
@@ -93,7 +94,18 @@ blogRouter.get("/bulk", async (c) => {
   }).$extends(withAccelerate());
 
   try {
-    const post = await prisma.post.findMany();
+    const post = await prisma.post.findMany({
+      select: {
+        content: true,
+        title: true,
+        id: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
     return c.json(post);
   } catch (e) {
     c.status(411);
@@ -111,6 +123,16 @@ blogRouter.get("/:id", async (c) => {
     const post = await prisma.post.findFirst({
       where: {
         id: id,
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 

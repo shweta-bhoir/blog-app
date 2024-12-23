@@ -17,12 +17,12 @@ exports.signinInput = zod_1.default.object({
 exports.createPostInput = zod_1.default.object({
     title: zod_1.default.string(),
     content: zod_1.default.string(),
-    published: zod_1.default.string(),
-    authorId: zod_1.default.string(),
+    published: zod_1.default.boolean().optional(),
+    authorId: zod_1.default.string().optional(),
 });
 exports.updatePostInput = zod_1.default.object({
     title: zod_1.default.string().optional(),
     content: zod_1.default.string().optional(),
-    published: zod_1.default.string(),
+    published: zod_1.default.boolean(),
     authorId: zod_1.default.string(),
 });
